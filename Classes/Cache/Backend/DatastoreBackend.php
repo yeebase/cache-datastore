@@ -41,6 +41,11 @@ class DatastoreBackend extends IndependentAbstractBackend implements TaggableBac
     /**
      * @var string
      */
+    protected $keyFile;
+
+    /**
+     * @var string
+     */
     protected $entityKind;
 
     /**
@@ -58,9 +63,15 @@ class DatastoreBackend extends IndependentAbstractBackend implements TaggableBac
     {
         parent::__construct($environmentConfiguration, $options);
         if ($this->datastoreClient === null) {
-            $this->datastoreClient = new DatastoreClient([
-                'keyFilePath' => FLOW_PATH_ROOT . '/' . $this->keyFilePath
-            ]);
+            if (!empty($this->keyFile)) {
+                $this->datastoreClient = new DatastoreClient([
+                    'keyFile' => json_decode($this->keyFile, true)
+                ]);
+            } else {
+                $this->datastoreClient = new DatastoreClient([
+                    'keyFilePath' => $this->keyFilePath
+                ]);
+            }
         }
     }
 
@@ -391,5 +402,13 @@ class DatastoreBackend extends IndependentAbstractBackend implements TaggableBac
     public function setEntityKind(string $entityKind): void
     {
         $this->entityKind = $entityKind;
+    }
+
+    /**
+     * @param string $keyFile
+     */
+    public function setKeyFile(string $keyFile)
+    {
+        $this->keyFile = $keyFile;
     }
 }
