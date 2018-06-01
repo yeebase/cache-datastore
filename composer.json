@@ -1,0 +1,19 @@
+{
+    "name": "yeebase/cache-datastore",
+    "description": "Neos Flow backend for google datastore",
+    "type": "neos-yeebase",
+    "require": {
+        "neos/cache": "*",
+        "google/cloud-datastore": "^1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Yeebase\\Cache\\Datastore\\": "Classes"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "Yeebase.Cache.Datastore"
+        }
+    }
+}

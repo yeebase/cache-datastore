@@ -1,0 +1,5 @@
+#Neos_Fusion_Content:
+#  backend: Yeebase\Cache\Datastore\Cache\Backend\DatastoreBackend
+#  backendOptions:
+#    entityKind: 'some-kind'
+#    keyFilePath: 'keyfile.json'
